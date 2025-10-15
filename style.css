@@ -1,5 +1,25 @@
 body {
   font-family: 'Poppins', sans-serif;
+  font-size: 18vw;   /* ← change this value for global font size */
+  text-align: center;
+  background: #fff8f8;
+}
+
+/* Headings */
+h1, h2 {
+  font-size: 28vw;   /* ← make headings bigger */
+  color: #ff5c8d;
+}
+
+/* Buttons */
+button {
+  font-size: 18vw;   /* ← button text size */
+  padding: 12px 20px;
+  border-radius: 12px;
+  background-color: #ff9ec2;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 #ui-panel {
