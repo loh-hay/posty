@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>AR Postcard Demo</title>
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-
-  <body style="margin: 0; overflow: hidden;">
-    <!-- Interface Panel -->
-    <div id="ui-panel">
-      <h2>📮 AR Postcard</h2>
-      <label>Upload your video:</label>
-      <input type="file" id="videoUpload" accept="video/*" />
-      <p>✏️ Doodle below (optional):</p>
-      <canvas id="drawCanvas" width="300" height="200"></canvas>
-      <button id="clearBtn">Clear</button>
-      <button id="saveBtn">Save & View AR</button>
-    </div>
-
-    <!-- AR Scene -->
-    <a-scene embedded arjs='trackingMethod: best; sourceType: webcam;'>
-      <a-marker type="pattern" url="pattern-marker.patt">
-        <a-video id="arVideo" width="1" height="0.6" position="0 0 0"></a-video>
-        <a-plane id="doodlePlane" position="0 0.5 0" width="1" height="0.6"></a-plane>
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-
-    <script src="script.js"></script>
-  </body>
+<head>
+  <title>AR Posty 💌</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>AR Posty 💌</h1>
+  <p>Send memories through AR postcards!</p>
+  <button onclick="window.location='create.html'">Create Postcard</button>
+  <button onclick="window.location='view.html'">View Postcard</button>
+</body>
 </html>
