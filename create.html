@@ -1,0 +1,12 @@
+<h2>Choose a Template</h2>
+<div class="templates">
+  <img src="postcard1.png" onclick="selectTemplate('1')">
+  <img src="postcard2.png" onclick="selectTemplate('2')">
+</div>
+<button onclick="window.location='upload.html'">Next ➡️</button>
+
+<script>
+function selectTemplate(id){
+  localStorage.setItem('template', id);
+}
+</script>
