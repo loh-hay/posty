@@ -1,0 +1,9 @@
+<h2>Review Postcard</h2>
+<img id="previewImg" width="300">
+<video id="previewVid" controls width="300"></video>
+<button onclick="window.location='view.html'">View in AR 🚀</button>
+
+<script>
+document.getElementById('previewImg').src = localStorage.getItem('doodle');
+document.getElementById('previewVid').src = localStorage.getItem('video');
+</script>
