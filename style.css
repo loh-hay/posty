@@ -3,7 +3,7 @@ body {
   font-family: "Poppins", "Segoe UI", sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url('bg.png');
+  background-image: url('posty_bg(1).png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -13,7 +13,7 @@ body {
 
 /* HERO SECTION */
 .hero {
-  background-image: url('posty_bg.png');
+  background-image: url('posty_bg(1).png');
   color: white;
   padding: 80px 20px 60px;
   border-bottom-left-radius: 50% 20%;
