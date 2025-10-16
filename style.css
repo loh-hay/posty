@@ -1,28 +1,14 @@
 /* 🌸 Background settings */
 body {
   background-image: url('posty_bg.png');
-  background-size: cover;          /* make it fill the screen */
-  background-position: center;     /* center the image */
-  background-repeat: no-repeat;    /* stop it from repeating */
-  background-attachment: fixed;    /* stays still while scrolling */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
   height: 100vh;
-}
-
-/* 🌸 Semi-transparent overlay for softer background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-image: url('posty_bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0.5; /* 👈 makes it 50% visible */
-  z-index: -2; /* stay behind everything */
 }
 
 /* 🌸 Centered welcome text/button */
