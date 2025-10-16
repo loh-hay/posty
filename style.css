@@ -13,7 +13,7 @@ body {
 
 /* HERO SECTION */
 .hero {
-  background: linear-gradient(180deg, #EF92D2 0%, #FDE7F5 100%);
+  background-image: url('posty_bg.png');
   color: white;
   padding: 80px 20px 60px;
   border-bottom-left-radius: 50% 20%;
