@@ -13,10 +13,10 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  justify-content: center;  /* vertically centers within its container */
+  align-items: center;      /* horizontally centers content */
+  text-align: center;       /* centers paragraphs and headings */
+  padding: 40px 20px;       /* optional spacing */
 }
 
 .hero::before {
@@ -29,8 +29,18 @@ body {
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
 }
+
 .hero {
-  position: relative;
+  position: relative;          /* required for overlay if used */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* vertically centers content */
+  align-items: center;         /* horizontally centers content */
+  text-align: center;          /* ensures multi-line text is centered */
+  padding: 80px 20px 60px;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .logo {
