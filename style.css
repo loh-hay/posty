@@ -1,46 +1,20 @@
-/* 🌸 Background settings */
+/* 🌸 General Reset */
 body {
-  background-image: url('posty_bg.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fde7f5;
+  color: #EF92D2;
+  text-align: center;
 }
 
-/* 🌸 Centered welcome text/button */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  /* vertically centers within its container */
-  align-items: center;      /* horizontally centers content */
-  text-align: center;       /* centers paragraphs and headings */
-  padding: 40px 20px;       /* optional spacing */
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.25); /* darkens background a little */
-  z-index: -1;
-  border-bottom-left-radius: 50% 20%;
-  border-bottom-right-radius: 50% 20%;
-}
-
+/* 🌸 HERO SECTION */
 .hero {
-  position: relative;          /* required for overlay if used */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;     /* vertically centers content */
-  align-items: center;         /* horizontally centers content */
-  text-align: center;          /* ensures multi-line text is centered */
-  padding: 80px 20px 60px;
+  padding: 80px 20px 40px;
+  background-color: #fff0f8;
   border-bottom-left-radius: 50% 20%;
   border-bottom-right-radius: 50% 20%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .logo {
@@ -49,9 +23,36 @@ body {
 }
 
 h1 {
-  color: #EF92D2;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #EF92D2;
+  opacity: 0.9;
+}
+
+/* 🌸 MAIN CONTENT */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.main-image {
+  max-width: 80%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+/* 🌸 BUTTONS */
+.buttons {
+  margin-top: 20px;
 }
 
 button {
@@ -59,8 +60,8 @@ button {
   color: white;
   border: none;
   border-radius: 20px;
-  padding: 12px 28px;
-  font-size: 1.2rem;
+  padding: 14px 32px;
+  font-size: 1.3rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -68,33 +69,29 @@ button {
 button:hover {
   background-color: #fde7f5;
   color: #EF92D2;
+  border: 2px solid #EF92D2;
 }
 
-.subtitle {
-  font-size: 1.2rem;
-  margin-top: 10px;
-  color: #fff;
-  opacity: 0.9;
-}
-
-/* MAIN CONTENT */
-.main-image {
-  max-width: 80%;
-  margin: 40px auto 20px;
-  display: block;
-  border-radius: 20px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
-}
-
-/* BUTTONS */
-.buttons {
-  margin-top: 20px;
-}
-
-/* FOOTER */
+/* 🌸 FOOTER */
 footer {
   font-size: 0.9rem;
   color: #666;
   margin-top: 60px;
   padding-bottom: 20px;
+}
+
+/* 🌸 Responsive Adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 12px 24px;
+  }
 }
