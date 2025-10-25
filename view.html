@@ -1,109 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Your Posty 💌</title>
-
-  <!-- A-Frame + MindAR -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/aframe/mindar-image-aframe.prod.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #fde7f5;
-      color: #EF92D2;
-      text-align: center;
-    }
-
-    .top-bar {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-    }
-
-    .back-button {
-      background-color: #EF92D2;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 10px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: #fde7f5;
-      color: #EF92D2;
-      border: 2px solid #EF92D2;
-    }
-
-    .loading-text {
-      margin-top: 80px;
-      font-size: 1.2rem;
-      color: #EF92D2;
-    }
-
-    a-scene {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="top-bar">
-    <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
-  </div>
-
-  <div class="loading-text">Point your camera at your postcard 💌</div>
-
-  <!-- 🌸 MindAR Scene -->
-  <a-scene
-  mindar-image="imageTargetSrc: targets.mind"
-  color-space="sRGB"
-  renderer="colorManagement: true, physicallyCorrectLights"
-  vr-mode-ui="enabled: false"
-  device-orientation-permission-ui="enabled: true"
-  embedded
-  arjs="sourceType: webcam; debugUIEnabled: false;">
-
-    <a-camera position="0 0 0" look-controls="false"></a-camera>
-
-    <!-- 🐱 Random Cat Meme Animation -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-image id="meme" position="0 0 0" scale="1 1 1"
-        animation__pulse="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true; dur: 2000"
-        animation__float="property: position; to: 0 0.2 0; dir: alternate; loop: true; dur: 3000; easing: easeInOutSine">
-      </a-image>
-    </a-entity>
-  </a-scene>
-
-  <!-- 🧠 Random Meme Loader -->
-  <script>
-    const catMemes = [
-      "cat1.jpg",
-      "cat2.jpg",
-      "cat3.jpg",
-      "cat4.jpg"
-    ];
-
-    const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const memeImage = document.querySelector("#meme");
-      if (memeImage) {
-        memeImage.setAttribute("src", randomCat);
-      }
-    });
-  </script>
-</body>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/aframe/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <a-scene
+      mindar-image="imageTargetSrc: targets.mind"
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: true"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;">
+      
+      <a-camera position="0 0 0" look-controls="false"></a-camera>
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-box color="#EF92D2" position="0 0 0"></a-box>
+      </a-entity>
+    </a-scene>
+  </body>
 </html>
