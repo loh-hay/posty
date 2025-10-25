@@ -1,34 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Posty AR View 💌</title>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/aframe/mindar-image-aframe.prod.js"></script>
-    <style>
-      body, html {
-        margin: 0;
-        height: 100%;
-        overflow: hidden;
-        background: black;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Posty 💌 Random Cat Drop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <h1>😺 A Cat Posty Just for You!</h1>
+    <img id="catImage" src="" alt="Random Cat Meme" style="max-width:80%; border-radius:20px; box-shadow:0 3px 8px rgba(0,0,0,0.1);" />
+    <p style="margin-top:20px;">Tap below to get another cat 🐾</p>
+    <button onclick="randomCat()">New Cat Posty</button>
+  </div>
 
-  <body>
-    <a-scene mindar-image="imageTargetSrc: ./targets.mind" color-space="sRGB" 
-             embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
-      <a-assets>
-        <video id="cat" src="cat.mp4" loop="true" preload="auto"></video>
-      </a-assets>
+  <script>
+    const cats = [
+      'curious_cat.jpg', 'funny_cat.jpg', 'hearts_cat.png', 'standing_cat.jpg'
+    ];
 
-      <a-camera position="0 0 0"></a-camera>
+    function randomCat() {
+      const random = cats[Math.floor(Math.random() * cats.length)];
+      document.getElementById('catImage').src = random;
+    }
 
-      <a-entity mindar-image-target="targetIndex: 0">
-        <a-video src="#cat" width="1" height="0.6" autoplay></a-video>
-      </a-entity>
-    </a-scene>
-  </body>
+    // Load one automatically on open
+    randomCat();
+  </script>
+</body>
 </html>
+
