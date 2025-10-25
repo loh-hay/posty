@@ -3,122 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>View Your Posty 💌</title>
-
-  <!-- A-Frame + MindAR -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image.prod.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/aframe/mindar-image-aframe.prod.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #fde7f5;
-      color: #EF92D2;
-      text-align: center;
-    }
-
-    .top-bar {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-    }
-
-    .back-button {
-      background-color: #EF92D2;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 10px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: #fde7f5;
-      color: #EF92D2;
-      border: 2px solid #EF92D2;
-    }
-
-    .message {
-      margin-top: 80px;
-      font-size: 1.2rem;
-      color: #EF92D2;
-    }
-
-    a-scene {
-      width: 100vw;
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      left: 0;
-      display: none; /* hide scene until camera allowed */
-    }
-  </style>
+  <title>AR Posty 💌</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div class="top-bar">
-    <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
-  </div>
+  <!-- 🌸 HERO SECTION -->
+  <section class="hero">
+    <img src="logo.png" alt="AR Posty Logo" class="logo">
+    <h1>Welcome to AR Posty 💌</h1>
+    <p class="subtitle">Send magical AR postcards that come alive!</p>
+  </section>
 
-  <div class="message" id="camera-message">
-    Please allow camera access to view your AR postcard 💌
-  </div>
+  <!-- 🌸 MAIN CONTENT -->
+  <section class="main-content">
+    <h2>Your Postcards</h2>
+    <p>Point your camera at a postcard to reveal the AR animation:</p>
 
-  <!-- 🌸 MindAR Scene -->
-  <a-scene
-    id="ar-scene"
-    mindar-image="imageTargetSrc: targets.mind"
-    color-space="sRGB"
-    renderer="colorManagement: true, physicallyCorrectLights"
-    vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: true"
-    embedded
-    arjs="sourceType: webcam; debugUIEnabled: false;">
+    <img src="postcard_back.png" alt="Postcard Preview" class="main-image">
 
-    <a-camera position="0 0 0" look-controls="false"></a-camera>
+    <div class="buttons">
+      <button onclick="window.location.href='view.html'">View AR Message</button>
+    </div>
+  </section>
 
-    <!-- 🐱 Random Cat Meme Animation -->
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-image id="meme" position="0 0 0" scale="1 1 1"
-        animation__pulse="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true; dur: 2000"
-        animation__float="property: position; to: 0 0.2 0; dir: alternate; loop: true; dur: 3000; easing: easeInOutSine">
-      </a-image>
-    </a-entity>
-  </a-scene>
-
-  <!-- 🧠 Random Meme Loader & Camera Check -->
-  <script>
-    const catMemes = [
-      "cat1.jpg",
-      "cat2.jpg",
-      "cat3.jpg",
-      "cat4.jpg"
-    ];
-
-    const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      const memeImage = document.querySelector("#meme");
-      if (memeImage) {
-        memeImage.setAttribute("src", randomCat);
-      }
-
-      // Try to access camera
-      try {
-        await navigator.mediaDevices.getUserMedia({ video: true });
-        document.getElementById("camera-message").style.display = "none";
-        document.getElementById("ar-scene").style.display = "block";
-      } catch (err) {
-        console.warn("Camera access denied", err);
-        document.getElementById("camera-message").textContent =
-          "Camera access is required to view your AR postcard. Please enable it in your browser settings.";
-      }
-    });
-  </script>
+  <!-- 🌸 FOOTER -->
+  <footer>
+    <p>© 2025 AR Posty | Made with 💖 by Hayllie</p>
+  </footer>
 </body>
 </html>
