@@ -14,9 +14,34 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
       overflow: hidden;
-      background: none; /* Remove pink background */
+      background: black; /* optional, just in case */
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Back Button */
+    .top-bar {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 10;
+    }
+
+    .back-button {
+      background-color: #EF92D2;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      padding: 10px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #fde7f5;
+      color: #EF92D2;
+      border: 2px solid #EF92D2;
     }
 
     /* Fullscreen AR Scene */
@@ -32,22 +57,32 @@
 </head>
 
 <body>
+  <!-- Back button -->
+  <div class="top-bar">
+    <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
+  </div>
+
   <!-- AR Scene -->
   <a-scene
-  mindar-image="imageTargetSrc: targets.mind"
-  embedded
-  arjs="sourceType: webcam; debugUIEnabled: false">
-  
-  <a-camera position="0 0 0" look-controls="false"></a-camera>
+    mindar-image="imageTargetSrc: targets.mind"
+    embedded
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: true"
+    arjs="sourceType: webcam; debugUIEnabled: false">
 
-  <a-entity mindar-image-target="targetIndex: 0">
-    <a-image id="meme" position="0 0 0" scale="1 1 1"></a-image>
-  </a-entity>
-</a-scene>
+    <a-camera position="0 0 0" look-controls="false"></a-camera>
+
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-image id="meme" position="0 0 0" scale="1 1 1"></a-image>
+    </a-entity>
+
+  </a-scene>
 
   <script>
     // Random meme selection
-    const catMemes = ["curious_cat.jpg", "funny_cat.jpg", "hearts_cat.png", "standing_cat.jpg"];
+    const catMemes = ["cat1.jpg","cat2.jpg","cat3.jpg","cat4.jpg"];
     const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
 
     document.addEventListener("DOMContentLoaded", () => {
