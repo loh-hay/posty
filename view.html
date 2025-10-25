@@ -15,8 +15,6 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      color: #EF92D2;
-      text-align: center;
       overflow: hidden;
       background: none; /* Remove pink background */
     }
@@ -46,21 +44,6 @@
       border: 2px solid #EF92D2;
     }
 
-    /* Camera Permission Message */
-    .message {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 1.2rem;
-      z-index: 10;
-      color: #EF92D2;
-      background-color: rgba(255, 255, 255, 0.6);
-      padding: 15px 25px;
-      border-radius: 12px;
-      display: none; /* hidden by default */
-    }
-
     /* Fullscreen AR Scene */
     a-scene {
       position: fixed;
@@ -74,21 +57,18 @@
 </head>
 
 <body>
+  <!-- Back button -->
   <div class="top-bar">
     <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
   </div>
 
-  <div class="message" id="camera-message">
-    Please allow camera access to view your AR postcard 💌
-  </div>
-
+  <!-- AR Scene -->
   <a-scene
     id="ar-scene"
     mindar-image="imageTargetSrc: targets.mind"
     color-space="sRGB"
     renderer="colorManagement: true, physicallyCorrectLights"
     vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: true"
     embedded
     arjs="sourceType: webcam; debugUIEnabled: false;">
     
@@ -103,27 +83,13 @@
   </a-scene>
 
   <script>
+    // Random meme selection
     const catMemes = ["cat1.jpg", "cat2.jpg", "cat3.jpg", "cat4.jpg"];
     const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
 
-    document.addEventListener("DOMContentLoaded", async () => {
+    document.addEventListener("DOMContentLoaded", () => {
       const memeImage = document.querySelector("#meme");
       if (memeImage) memeImage.setAttribute("src", randomCat);
-
-      const cameraMessage = document.getElementById("camera-message");
-      const arScene = document.getElementById("ar-scene");
-
-      try {
-        await navigator.mediaDevices.getUserMedia({ video: true });
-        cameraMessage.style.display = "none";
-        arScene.style.display = "block";
-      } catch (err) {
-        console.warn("Camera access denied", err);
-        cameraMessage.style.display = "block";
-        cameraMessage.textContent =
-          "Camera access is required to view your AR postcard. Please enable it in your browser settings.";
-        arScene.style.display = "none";
-      }
     });
   </script>
 </body>
