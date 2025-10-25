@@ -19,31 +19,6 @@
       background: none; /* Remove pink background */
     }
 
-    /* Back Button */
-    .top-bar {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 10;
-    }
-
-    .back-button {
-      background-color: #EF92D2;
-      color: white;
-      border: none;
-      border-radius: 15px;
-      padding: 10px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .back-button:hover {
-      background-color: #fde7f5;
-      color: #EF92D2;
-      border: 2px solid #EF92D2;
-    }
-
     /* Fullscreen AR Scene */
     a-scene {
       position: fixed;
@@ -57,11 +32,6 @@
 </head>
 
 <body>
-  <!-- Back button -->
-  <div class="top-bar">
-    <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
-  </div>
-
   <!-- AR Scene -->
   <a-scene
     id="ar-scene"
@@ -84,7 +54,7 @@
 
   <script>
     // Random meme selection
-    const catMemes = ["standing_cat.jpg", "hearts_cat.png", "funny_cat.jpg", "curious_cat.jpg"];
+    const catMemes = ["cat1.jpg", "cat2.jpg", "cat3.jpg", "cat4.jpg"];
     const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
 
     document.addEventListener("DOMContentLoaded", () => {
