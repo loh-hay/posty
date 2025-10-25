@@ -11,18 +11,17 @@
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/aframe/mindar-image-aframe.prod.js"></script>
 
   <style>
-    /* 🌸 Remove body background for AR view */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      overflow: hidden;
-      background: none;
       color: #EF92D2;
       text-align: center;
+      overflow: hidden;
+      background: none; /* Remove pink background */
     }
 
-    /* 🌸 Back Button */
+    /* Back Button */
     .top-bar {
       position: absolute;
       top: 10px;
@@ -47,7 +46,7 @@
       border: 2px solid #EF92D2;
     }
 
-    /* 🌸 Camera permission message */
+    /* Camera Permission Message */
     .message {
       position: absolute;
       top: 50%;
@@ -62,7 +61,7 @@
       display: none; /* hidden by default */
     }
 
-    /* 🌸 Fullscreen AR scene */
+    /* Fullscreen AR Scene */
     a-scene {
       position: fixed;
       top: 0;
@@ -75,17 +74,14 @@
 </head>
 
 <body>
-  <!-- Back button -->
   <div class="top-bar">
     <button class="back-button" onclick="window.location.href='index.html'">← Back</button>
   </div>
 
-  <!-- Camera permission message -->
   <div class="message" id="camera-message">
     Please allow camera access to view your AR postcard 💌
   </div>
 
-  <!-- MindAR scene -->
   <a-scene
     id="ar-scene"
     mindar-image="imageTargetSrc: targets.mind"
@@ -98,7 +94,6 @@
     
     <a-camera position="0 0 0" look-controls="false"></a-camera>
 
-    <!-- Random cat meme animation -->
     <a-entity mindar-image-target="targetIndex: 0">
       <a-image id="meme" position="0 0 0" scale="1 1 1"
         animation__pulse="property: scale; to: 1.1 1.1 1.1; dir: alternate; loop: true; dur: 2000"
@@ -107,7 +102,6 @@
     </a-entity>
   </a-scene>
 
-  <!-- Random meme loader + camera check -->
   <script>
     const catMemes = ["cat1.jpg", "cat2.jpg", "cat3.jpg", "cat4.jpg"];
     const randomCat = catMemes[Math.floor(Math.random() * catMemes.length)];
@@ -121,11 +115,9 @@
 
       try {
         await navigator.mediaDevices.getUserMedia({ video: true });
-        // Camera allowed: show AR, hide message
         cameraMessage.style.display = "none";
         arScene.style.display = "block";
       } catch (err) {
-        // Camera denied: show message
         console.warn("Camera access denied", err);
         cameraMessage.style.display = "block";
         cameraMessage.textContent =
