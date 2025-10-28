@@ -138,25 +138,23 @@ footer {
   }
 
   .scroll-arrow {
-  font-size: 3rem;               /* larger arrow */
-  color: #EF92D2;                /* theme color */
+  width: 100px;            /* ideal size for mobile */
+  height: auto;
   margin-top: 1rem;
-  text-shadow: 0 0 8px #EF92D2;  /* glow effect */
   animation: floatPulse 2s ease-in-out infinite;
+  display: block;
 }
 
-/* floating + pulsing animation */
+/* Floating animation */
 @keyframes floatPulse {
-  0%   { transform: translateY(0) scale(1); opacity: 0.8; }
-  25%  { transform: translateY(-10px) scale(1.1); opacity: 1; }
-  50%  { transform: translateY(0) scale(1); opacity: 0.8; }
-  75%  { transform: translateY(-10px) scale(1.1); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 0.8; }
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
-/* Responsive adjustment */
-@media (max-width: 768px) {
+/* Smaller screens */
+@media (max-width: 480px) {
   .scroll-arrow {
-    font-size: 2rem;
+    width: 80px;
   }
 }
