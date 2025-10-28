@@ -138,22 +138,25 @@ footer {
   }
 
   .scroll-arrow {
-  font-size: 2rem;             /* arrow size */
-  color: #EF92D2;              /* match your theme */
+  font-size: 3rem;               /* larger arrow */
+  color: #EF92D2;                /* theme color */
   margin-top: 1rem;
-  animation: floatArrow 2s ease-in-out infinite;
+  text-shadow: 0 0 8px #EF92D2;  /* glow effect */
+  animation: floatPulse 2s ease-in-out infinite;
 }
 
-/* floating animation */
-@keyframes floatArrow {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
+/* floating + pulsing animation */
+@keyframes floatPulse {
+  0%   { transform: translateY(0) scale(1); opacity: 0.8; }
+  25%  { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  50%  { transform: translateY(0) scale(1); opacity: 0.8; }
+  75%  { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.8; }
 }
 
 /* Responsive adjustment */
 @media (max-width: 768px) {
   .scroll-arrow {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
