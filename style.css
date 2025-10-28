@@ -1,26 +1,24 @@
 /* 🌸 GENERAL STYLES */
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: #333;
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100vh;
 }
 
-/* 🌸 HERO SECTION */
 .hero {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%; /* full height of viewport */
+  width: 100%;
   text-align: center;
   color: #e681c4;
   background-image: url('posty_bg.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* parallax scroll */
+  background-size: cover;       /* fills screen, crops if needed */
+  background-position: center;  /* center image */
+  background-attachment: fixed; /* parallax effect */
   overflow: hidden;
 }
 
