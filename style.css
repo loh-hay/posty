@@ -70,8 +70,10 @@ h1, .logo-text {
 }
 
 .hero .subtitle {
-  font-size: 1.3rem; /* 20.8px / 16 */
+  font-size: 1.3rem;  /* default size for desktop */
   opacity: 0.9;
+  margin-top: 1rem;
+  text-align: center;
 }
 
 /* 🌸 MAIN CONTENT */
@@ -139,14 +141,17 @@ footer {
   100% { transform: translateY(0); }
 }
 
-/* 🌸 RESPONSIVE */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  h1 { font-size: 2.2rem; }
-  .subtitle { font-size: 1rem; }
-  button { font-size: 1.1rem; padding: 0.75rem 1.5rem; }
-  .scroll-arrow { width: 100px; }
+  .hero .subtitle {
+    font-size: 1.1rem; /* slightly smaller on tablets */
+  }
 }
 
 @media (max-width: 480px) {
-  .scroll-arrow { width: 80px; }
+  .hero .subtitle {
+    font-size: 0.95rem; /* smaller on phones */
+    margin-top: 0.5rem;
+    padding: 0 10px;    /* prevents touching edges */
+  }
 }
