@@ -26,7 +26,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 182, 193, 0.2); /* light pink, 20% opacity */
   z-index: 0;
 }
 
