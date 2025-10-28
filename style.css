@@ -83,6 +83,8 @@ h1, .logo-text {
   justify-content: center;
   align-items: center;
   padding: 2.5rem 1.25rem; /* 40px 20px / 16 */
+  background-color: #fde7f5; /* soft pastel pink matching brand colours */
+  border-radius: 1rem; /* optional: soft corners for style */
 }
 
 .main-image {
