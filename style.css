@@ -16,7 +16,7 @@ body {
   align-items: center;
   height: 100vh;
   text-align: center;
-  color: #fff;
+  color: #e681c4;
   background: url('posty_bg.png') center / cover fixed no-repeat;
   overflow: hidden;
 }
@@ -26,7 +26,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba('#f8e1f1', 0.2); /* light pink, 20% opacity */
+  background-color: rgba(0, 0, 0, 0.30);
   z-index: 0;
 }
 
@@ -37,30 +37,30 @@ body {
 
 /* 🌸 LOGO */
 .logo {
-  width: 280px;
+  width: 17.5rem; /* 280px / 16 */
   max-width: 80%;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem; /* 20px / 16 */
   animation: float 6s ease-in-out infinite;
 }
 
 /* Floating animation */
 @keyframes float {
   0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-0.625rem); } /* 10px / 16 */
   100% { transform: translateY(0); }
 }
 
 /* 🌸 TEXT */
 h1, .logo-text {
   font-family: 'Chewy', cursive;
-  font-size: 3.2rem;
+  font-size: 3.2rem; /* 51.2px / 16 */
   color: #EF92D2;
-  letter-spacing: 1px;
+  letter-spacing: 0.0625rem; /* 1px / 16 */
 }
 
 .hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
+  font-size: 2.8rem; /* 44.8px / 16 */
+  margin-bottom: 0.625rem; /* 10px / 16 */
 }
 
 .subtitle, h2, p {
@@ -69,7 +69,7 @@ h1, .logo-text {
 }
 
 .hero .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.3rem; /* 20.8px / 16 */
   opacity: 0.9;
 }
 
@@ -79,20 +79,20 @@ h1, .logo-text {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  padding: 2.5rem 1.25rem; /* 40px 20px / 16 */
 }
 
 .main-image {
   max-width: 80%;
   height: auto;
-  margin: 20px 0;
-  border-radius: 20px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  margin: 1.25rem 0; /* 20px / 16 */
+  border-radius: 1.25rem; /* 20px / 16 */
+  box-shadow: 0 0.1875rem 0.5rem rgba(0,0,0,0.05); /* 3px 8px / 16 */
 }
 
 /* 🌸 BUTTONS */
 .buttons {
-  margin-top: 20px;
+  margin-top: 1.25rem; /* 20px / 16 */
 }
 
 button {
@@ -100,9 +100,9 @@ button {
   background-color: #EF92D2;
   color: white;
   border: 2px solid transparent;
-  border-radius: 20px;
-  padding: 14px 32px;
-  font-size: 1.3rem;
+  border-radius: 1.25rem; /* 20px / 16 */
+  padding: 0.875rem 2rem; /* 14px 32px / 16 */
+  font-size: 1.3rem; /* 20.8px / 16 */
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -115,25 +115,25 @@ button:hover {
 
 /* 🌸 FOOTER */
 footer {
-  font-size: 0.9rem;
+  font-size: 0.5625rem; /* 9px / 16 */
   color: #666;
-  margin-top: 60px;
-  padding-bottom: 20px;
+  margin-top: 3.75rem; /* 60px / 16 */
+  padding-bottom: 1.25rem; /* 20px / 16 */
   text-align: center;
 }
 
 /* 🌸 RESPONSIVE */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.2rem;
+    font-size: 2.2rem; /* 35.2px / 16 */
   }
 
   .subtitle {
-    font-size: 1rem;
+    font-size: 1rem; /* 16px / 16 */
   }
 
   button {
-    font-size: 1.1rem;
-    padding: 12px 24px;
+    font-size: 1.1rem; /* 17.6px / 16 */
+    padding: 0.75rem 1.5rem; /* 12px 24px / 16 */
   }
 }
