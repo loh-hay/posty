@@ -127,22 +127,6 @@ footer {
   text-align: center;
 }
 
-/* 🌸 SCROLL ARROW */
-.scroll-arrow {
-  width: 100px;
-  height: auto;
-  margin-top: 1rem;
-  display: block;
-  animation: floatPulse 2s ease-in-out infinite;
-}
-
-/* Floating animation for arrow */
-@keyframes floatPulse {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .hero .subtitle {
