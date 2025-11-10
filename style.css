@@ -171,3 +171,25 @@ footer {
     padding: 0 10px;    /* prevents touching edges */
   }
 }
+
+/* Fade-in animation for cats and facts */
+#catImage, #catFact {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* Optional: style the fact box */
+#catFact {
+  margin-top: 15px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #6b3f5a;
+  background-color: #fde7f5;
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: inline-block;
+}
