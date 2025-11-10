@@ -16,18 +16,49 @@
 </div>
 
   <script>
-    const cats = [
-      'curious_cat.jpg', 'funny_cat.jpg', 'hearts_cat.png', 'standing_cat.jpg'
-    ];
+  const cats = [
+    'curious_cat.jpg',
+    'funny_cat.jpg',
+    'hearts_cat.png',
+    'standing_cat.jpg'
+  ];
 
-    function randomCat() {
-      const random = cats[Math.floor(Math.random() * cats.length)];
-      document.getElementById('catImage').src = random;
-    }
+  const facts = [
+    "Cats sleep for about 70% of their lives. 💤",
+    "A group of cats is called a clowder. 🐾",
+    "The oldest known pet cat was found in a 9,500-year-old grave. 😺",
+    "Cats have over 20 muscles that control their ears! 👂",
+    "A cat’s purr can help heal bones and tissue. 💖",
+    "Most cats run faster than Usain Bolt for short bursts! 🏃‍♂️🐈"
+  ];
 
-    // Load one automatically on open
-    randomCat();
-  </script>
+  function randomCat() {
+    const randomCat = cats[Math.floor(Math.random() * cats.length)];
+    const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    
+    const img = document.getElementById('catImage');
+    const factBox = document.getElementById('catFact');
+
+    // Start fade-out
+    img.classList.remove('visible');
+    factBox.classList.remove('visible');
+
+    // Wait for fade-out, then change image + fact
+    setTimeout(() => {
+      img.src = randomCat;
+      factBox.textContent = randomFact;
+    }, 200);
+
+    // Fade in once new image loads
+    img.onload = () => {
+      img.classList.add('visible');
+      factBox.classList.add('visible');
+    };
+  }
+
+  // Load one automatically on open
+  window.onload = randomCat;
+</script>
 </body>
 </html>
 
