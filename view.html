@@ -6,90 +6,99 @@
   <title>Posty 💌 Random Cats</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="main-content">
-  <h1>Purr-sonalised for you! 😺</h1>
-  <img id="catImage" src="" alt="Random Cat Meme" style="max-width:80%; border-radius:20px; box-shadow:0 3px 8px rgba(0,0,0,0.1);" />
-  <p id="catFact">Loading cat fact...</p>
-  <p style="margin-top:20px;">Tap below to get another cat 🐾</p>
-  <button onclick="randomCat()">More Meow!</button>
-  <button onclick="window.location.href='index.html'" style="margin-top:10px; background-color:#fde7f5; color:#EF92D2; border-radius:10px; padding:10px 20px; border:none; cursor:pointer;">Back</button>
-</div>
+    <h1>Purr-sonalised for you! 😺</h1>
+
+    <img id="catImage" src="" alt="Random Cat Meme" style="max-width:80%; border-radius:20px; box-shadow:0 3px 8px rgba(0,0,0,0.1);" />
+    <p id="catFact">Loading cat fact...</p>
+
+    <p style="margin-top:20px;">Tap below to get another cat 🐾</p>
+    <button onclick="randomCat()">More Meow!</button>
+    <button id="shareBtn">Share This Posty 💌</button>
+
+    <button onclick="window.location.href='index.html'" style="margin-top:10px; background-color:#fde7f5; color:#EF92D2; border-radius:10px; padding:10px 20px; border:none; cursor:pointer;">
+      Back
+    </button>
+  </div>
+
+  <!-- Confetti / Hearts Container -->
+  <div id="heart-container"></div>
 
   <script>
-  const cats = [
-    'curious_cat.jpg',
-    'funny_cat.jpg',
-    'hearts_cat.png',
-    'standing_cat.jpg'
-  ];
+    const cats = [
+      'curious_cat.jpg',
+      'funny_cat.jpg',
+      'hearts_cat.png',
+      'standing_cat.jpg'
+    ];
 
-  const facts = [
-    "Cats sleep for about 70% of their lives. 💤",
-    "A group of cats is called a clowder. 🐾",
-    "The oldest known pet cat was found in a 9,500-year-old grave. 😺",
-    "Cats have over 20 muscles that control their ears! 👂",
-    "A cat’s purr can help heal bones and tissue. 💖",
-    "Most cats run faster than Usain Bolt for short bursts! 🏃‍♂️🐈"
-  ];
+    const facts = [
+      "Cats sleep for about 70% of their lives. 💤",
+      "A group of cats is called a clowder. 🐾",
+      "The oldest known pet cat was found in a 9,500-year-old grave. 😺",
+      "Cats have over 20 muscles that control their ears! 👂",
+      "A cat’s purr can help heal bones and tissue. 💖",
+      "Most cats run faster than Usain Bolt for short bursts! 🏃‍♂️🐈"
+    ];
 
-  function randomCat() {
-  const randomCatFile = cats[Math.floor(Math.random() * cats.length)];
-  const randomFact = facts[Math.floor(Math.random() * facts.length)];
+    function randomCat() {
+      const randomCatFile = cats[Math.floor(Math.random() * cats.length)];
+      const randomFact = facts[Math.floor(Math.random() * facts.length)];
 
-  const img = document.getElementById('catImage');
-  const factBox = document.getElementById('catFact');
+      const img = document.getElementById('catImage');
+      const factBox = document.getElementById('catFact');
 
-  // Start fade-out
-  img.classList.remove('visible');
-  factBox.classList.remove('visible');
+      // Start fade-out
+      img.classList.remove('visible');
+      factBox.classList.remove('visible');
 
-  // Preload image before showing
-  const newImg = new Image();
-  newImg.src = randomCatFile;
+      // Preload image before showing
+      const newImg = new Image();
+      newImg.src = randomCatFile;
 
-  newImg.onload = () => {
-    img.src = randomCatFile;
-    factBox.textContent = randomFact;
+      newImg.onload = () => {
+        img.src = randomCatFile;
+        factBox.textContent = randomFact;
 
-    // Now fade in
-    img.classList.add('visible');
-    factBox.classList.add('visible');
+        // Fade-in
+        img.classList.add('visible');
+        factBox.classList.add('visible');
 
-    // Add the heart burst
-    burstHearts();
-  };
-}
+        // Add the heart burst
+        burstHearts();
+      };
+    }
 
-  function burstHearts() {
-  const container = document.getElementById('heart-container');
-  const heartCount = 10; // number of hearts per click
+    function burstHearts() {
+      const container = document.getElementById('heart-container');
+      const heartCount = 10;
 
-  for (let i = 0; i < heartCount; i++) {
-    const heart = document.createElement('span');
-    heart.classList.add('heart');
-    heart.textContent = '💖';
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('span');
+        heart.classList.add('heart');
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = (50 + Math.random() * 20) + '%';
+        heart.style.animationDelay = Math.random() * 0.3 + 's';
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      }
+    }
 
-    // Random horizontal position & animation delay
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.top = (50 + Math.random() * 20) + '%';
-    heart.style.animationDelay = Math.random() * 0.3 + 's';
+    // 💌 Share button logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const shareBtn = document.getElementById('shareBtn');
+      shareBtn.onclick = () => {
+        const fact = document.getElementById('catFact').textContent;
+        navigator.clipboard.writeText(`🐱 ${fact} — from Posty 💌`);
+        alert("Copied your Posty! 💖");
+      };
+    });
 
-    container.appendChild(heart);
-
-    // Remove heart after animation
-    setTimeout(() => heart.remove(), 2000);
-  }
-}
-    
-
-  // Load one automatically on open
-  window.onload = randomCat;
-</script>
-
-<!-- Confetti / Hearts Container -->
-<div id="heart-container"></div>
-
+    // Load one automatically on open
+    window.onload = randomCat;
+  </script>
 </body>
 </html>
-
