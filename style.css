@@ -5,42 +5,49 @@ html, body {
   padding: 0;
 }
 
+/* === HERO SECTION === */
 .hero {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%; /* full height of viewport */
+  height: 100vh; /* full screen hero */
   width: 100%;
   text-align: center;
   color: #e681c4;
   background-image: url('posty_bg.png');
-  background-size: cover;       /* fills screen, crops if needed */
-  background-position: center;  /* center image */
-  background-attachment: fixed; /* parallax effect */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
-/* Soft overlay for contrast */
+/* Soft gradient overlay for dreamy pink effect */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(255, 182, 193, 0.2); /* light pink, 20% opacity */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 182, 193, 0.1),
+    rgba(255, 255, 255, 0.6)
+  );
   z-index: 0;
 }
 
-.hero * {
+.hero-content {
   position: relative;
   z-index: 1;
+  padding: 2rem;
+  backdrop-filter: blur(2px); /* subtle frosted look */
 }
 
 /* 🌸 LOGO */
 .logo {
-  width: 17.5rem; /* 280px / 16 */
+  width: 17rem;
   max-width: 80%;
-  margin-bottom: 1.25rem; /* 20px / 16 */
+  margin: 1rem 0;
   animation: float 6s ease-in-out infinite;
 }
 
@@ -60,20 +67,43 @@ h1, .logo-text {
 }
 
 .hero h1 {
-  font-size: 2.8rem; /* 44.8px / 16 */
-  margin-bottom: 0.625rem; /* 10px / 16 */
+  font-family: 'Chewy', cursive;
+  font-size: 2.8rem;
+  color: #EF92D2;
+  margin-bottom: 0.5rem;
 }
-
 .subtitle, h2, p {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
 }
 
 .hero .subtitle {
-  font-size: 1.3rem;  /* default size for desktop */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
   opacity: 0.9;
-  margin-top: 1rem;
-  text-align: center;
+  color: #6b3f5a;
+}
+
+/* Scroll arrow animation */
+.scroll-arrow {
+  position: absolute;
+  bottom: 2rem;
+  width: 50px;
+  opacity: 0.8;
+  animation: bounce 1.5s infinite ease-in-out;
+  z-index: 1;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
 }
 
 /* 🌸 MAIN CONTENT */
