@@ -34,29 +34,32 @@
   ];
 
   function randomCat() {
-    const randomCat = cats[Math.floor(Math.random() * cats.length)];
-    const randomFact = facts[Math.floor(Math.random() * facts.length)];
-    
-    const img = document.getElementById('catImage');
-    const factBox = document.getElementById('catFact');
+  const randomCatFile = cats[Math.floor(Math.random() * cats.length)];
+  const randomFact = facts[Math.floor(Math.random() * facts.length)];
 
-    // Start fade-out
-    img.classList.remove('visible');
-    factBox.classList.remove('visible');
+  const img = document.getElementById('catImage');
+  const factBox = document.getElementById('catFact');
 
-    // Wait for fade-out, then change image + fact
-    setTimeout(() => {
-      img.src = randomCat;
-      factBox.textContent = randomFact;
-    }, 200);
+  // Start fade-out
+  img.classList.remove('visible');
+  factBox.classList.remove('visible');
 
-    // Fade in once new image loads
-    img.onload = () => {
+  // Preload image before showing
+  const newImg = new Image();
+  newImg.src = randomCatFile;
+
+  newImg.onload = () => {
+    img.src = randomCatFile;
+    factBox.textContent = randomFact;
+
+    // Now fade in
     img.classList.add('visible');
     factBox.classList.add('visible');
-    burstHearts(); // 💖 trigger heart animation
+
+    // Add the heart burst
+    burstHearts();
   };
-  }
+}
 
   function burstHearts() {
   const container = document.getElementById('heart-container');
