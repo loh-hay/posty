@@ -52,10 +52,33 @@
 
     // Fade in once new image loads
     img.onload = () => {
-      img.classList.add('visible');
-      factBox.classList.add('visible');
-    };
+    img.classList.add('visible');
+    factBox.classList.add('visible');
+    burstHearts(); // 💖 trigger heart animation
+  };
   }
+
+  function burstHearts() {
+  const container = document.getElementById('heart-container');
+  const heartCount = 10; // number of hearts per click
+
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('span');
+    heart.classList.add('heart');
+    heart.textContent = '💖';
+
+    // Random horizontal position & animation delay
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.top = (50 + Math.random() * 20) + '%';
+    heart.style.animationDelay = Math.random() * 0.3 + 's';
+
+    container.appendChild(heart);
+
+    // Remove heart after animation
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+    
 
   // Load one automatically on open
   window.onload = randomCat;
