@@ -175,10 +175,10 @@ footer {
 /* Fade-in animation for cats and facts */
 #catImage, #catFact {
   opacity: 0;
-  transition: opacity 0.6s ease;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.visible {
+#catImage.visible, #catFact.visible {
   opacity: 1;
 }
 
