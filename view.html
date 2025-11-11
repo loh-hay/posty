@@ -3,46 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Posty 💌 Random Cats</title>
+  <title>Posty 💌 Your Purr-sonal Cat</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Match home page background */
+    body {
+      background-image: url('posty_bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      color: #EF92D2;
+      text-align: center;
+    }
+
+    .main-content {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin: 4rem auto;
+      width: 85%;
+      max-width: 600px;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-family: 'Chewy', cursive;
+      color: #EF92D2;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    #catImage {
+      max-width: 80%;
+      border-radius: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #catImage.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #catFact {
+      font-size: 1.1rem;
+      color: #444;
+      margin-top: 1rem;
+    }
+
+    /* 💖 Buttons */
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: #EF92D2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 16px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #fde7f5;
+      color: #EF92D2;
+    }
+
+    #catCount {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* 💌 Floating message bubble */
+    .message {
+      background-color: #fff0f7;
+      color: #EF92D2;
+      padding: 8px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 💖 Hearts animation */
+    .heart {
+      position: fixed;
+      font-size: 1.5rem;
+      animation: floatUp 2s ease forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- 🌸 Floating Background Hearts -->
-  <div class="background-heart" style="left:10%; width:50px; height:50px; animation-delay:0s;"></div>
-  <div class="background-heart" style="left:70%; width:70px; height:70px; animation-delay:4s;"></div>
-  <div class="background-heart" style="left:40%; width:90px; height:90px; animation-delay:8s;"></div>
+
   <div class="main-content">
-    <h1>Purr-sonalised for you! 😺</h1>
+    <div class="message">You’ve got meow-mail! 💌</div>
+    <h1>Purr-sonalised for you 😺</h1>
 
-    <img id="catImage" src="" alt="Random Cat Meme" style="max-width:80%; border-radius:20px; box-shadow:0 3px 8px rgba(0,0,0,0.1);" />
+    <img id="catImage" src="" alt="Random Cat Meme" />
     <p id="catFact">Loading cat fact...</p>
-    <p style="margin-top:20px;">Tap below to get another cat 🐾</p>
-    <div class="button-group">
-  <button onclick="randomCat()">More Meow!</button>
-</div>
+    <p id="catCount">You’ve seen 1 cat today!</p>
 
-    <button onclick="window.location.href='index.html'" 
-      style="margin-top:10px; background-color:#fde7f5; color:#EF92D2; border-radius:10px; padding:10px 20px; border:none; cursor:pointer;">
-      Back
-    </button>
+    <div class="button-row">
+      <button onclick="randomCat()">More Meow!</button>
+      <button id="shareBtn">Share Posty 💌</button>
+      <button id="saveBtn">Save Cat 📸</button>
+      <button onclick="window.location.href='index.html'">Back</button>
+    </div>
+  </div>
 
-  <!-- Confetti / Hearts Container -->
   <div id="heart-container"></div>
 
   <script>
-    const cats = [
-      'curious_cat.jpg',
-      'funny_cat.jpg',
-      'hearts_cat.png',
-      'standing_cat.jpg',
-      'calico_cat.jpg',
-      'confused_cat.jpg',
-      'cute_kitten.jpg',
-      'smile_cat.jpg',
-      'kitten.jpg'
-    ];
-
+    const cats = ['curious_cat.jpg', 'funny_cat.jpg', 'hearts_cat.png', 'standing_cat.jpg'];
     const facts = [
       "Cats sleep for about 70% of their lives. 💤",
       "A group of cats is called a clowder. 🐾",
@@ -52,62 +149,63 @@
       "Most cats run faster than Usain Bolt for short bursts! 🏃‍♂️🐈"
     ];
 
+    let count = 1;
+
     function randomCat() {
       const randomCatFile = cats[Math.floor(Math.random() * cats.length)];
       const randomFact = facts[Math.floor(Math.random() * facts.length)];
-
       const img = document.getElementById('catImage');
       const factBox = document.getElementById('catFact');
+      const countBox = document.getElementById('catCount');
 
-      // Start fade-out
       img.classList.remove('visible');
       factBox.classList.remove('visible');
 
-      // Preload image before showing
       const newImg = new Image();
       newImg.src = randomCatFile;
 
       newImg.onload = () => {
         img.src = randomCatFile;
         factBox.textContent = randomFact;
-
-        // Fade-in
         img.classList.add('visible');
         factBox.classList.add('visible');
-
-        // Add the heart burst
         burstHearts();
+
+        count++;
+        countBox.textContent = `You’ve seen ${count} cats today!`;
       };
     }
 
     function burstHearts() {
       const container = document.getElementById('heart-container');
-      const heartCount = 10;
-
-      for (let i = 0; i < heartCount; i++) {
+      for (let i = 0; i < 10; i++) {
         const heart = document.createElement('span');
         heart.classList.add('heart');
         heart.textContent = '💖';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = (50 + Math.random() * 20) + '%';
+        heart.style.top = (60 + Math.random() * 20) + '%';
         heart.style.animationDelay = Math.random() * 0.3 + 's';
         container.appendChild(heart);
         setTimeout(() => heart.remove(), 2000);
       }
     }
 
-    // 💌 Share button logic
-    document.addEventListener('DOMContentLoaded', () => {
-      const shareBtn = document.getElementById('shareBtn');
-      shareBtn.onclick = () => {
-        const fact = document.getElementById('catFact').textContent;
-        navigator.clipboard.writeText(`🐱 ${fact} — from Posty 💌`);
-        alert("Copied your Posty! 💖");
-      };
-    });
+    document.getElementById('shareBtn').onclick = () => {
+      const fact = document.getElementById('catFact').textContent;
+      navigator.clipboard.writeText(`🐱 ${fact} — from Posty 💌`);
+      alert("Copied your Posty! 💖");
+    };
 
-    // Load one automatically on open
+    document.getElementById('saveBtn').onclick = () => {
+      const imgSrc = document.getElementById('catImage').src;
+      const link = document.createElement('a');
+      link.href = imgSrc;
+      link.download = 'posty_cat.jpg';
+      link.click();
+    };
+
     window.onload = randomCat;
   </script>
+
 </body>
 </html>
