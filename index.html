@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <title>Posty 💌</title>
-  <style>
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* 🌸 FONT STYLES */
     h1, h2, h3 {
       font-family: 'Chewy', cursive;
-      color: #EF92D2; /* Keep your playful pink */
+      color: #EF92D2;
     }
 
-    /* Paragraphs use Montserrat */
     p, li {
       font-family: 'Montserrat', sans-serif;
-      color: #444; /* Slightly darker for readability */
+      color: #444;
+      line-height: 1.6;
+      max-width: 600px;
     }
-    
-    /* Fade-in animation for sections */
+
+    /* 🌸 SECTION SPACING */
+    section {
+      margin: 3rem auto;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    /* 🌸 ANIMATIONS */
     .fade-in {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
       transition: opacity 1s ease, transform 1s ease;
     }
 
@@ -31,11 +42,10 @@
       transform: translateY(0);
     }
 
-    /* Floating hearts behind About section */
+    /* 🌸 FLOATING HEARTS (background decoration) */
     .bg-heart {
       position: absolute;
-      font-size: 1.5rem;
-      color: rgba(255, 182, 193, 0.3);
+      color: rgba(255, 182, 193, 0.25);
       z-index: 0;
       pointer-events: none;
       animation: floatBack 10s linear infinite;
@@ -43,13 +53,57 @@
 
     @keyframes floatBack {
       0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-50px) rotate(45deg); }
-      100% { transform: translateY(-100px) rotate(90deg); }
+      50% { transform: translateY(-40px) rotate(30deg); }
+      100% { transform: translateY(-80px) rotate(60deg); }
     }
 
     .main-content.about {
       position: relative;
       overflow: hidden;
+      background-color: #fde7f5;
+      border-radius: 1rem;
+      padding: 3rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    /* 🌸 BUTTONS */
+    .buttons {
+      margin-top: 1.5rem;
+    }
+
+    button {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #EF92D2;
+      color: white;
+      border: none;
+      border-radius: 1.25rem;
+      padding: 0.75rem 1.75rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0.3rem;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #EF92D2;
+      border: 2px solid #EF92D2;
+    }
+
+    /* 🌸 FOOTER */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 2rem 0;
+      background: #fff;
+    }
+
+    /* 🌸 RESPONSIVE */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.6rem; }
+      p { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -59,27 +113,27 @@
   <section class="hero fade-in">
     <div class="hero-content">
       <h1>Welcome to</h1>
-      <img src="logo.png" alt="Posty Logo" class="logo" />
-      <p class="subtitle">Scroll to begin your Posty experience!</p>
+      <img src="logo.png" alt="Posty Logo" class="logo">
+      <p class="subtitle">Bringing smiles, one Posty at a time 💌</p>
     </div>
-    <!-- Animated scroll arrow -->
-    <img src="pink arrow.png" alt="Scroll Down" class="scroll-arrow" />
+    <img src="pink arrow.png" alt="Scroll Down" class="scroll-arrow">
   </section>
 
-  <!-- 🌸 ABOUT POSTY SECTION -->
+  <!-- 🌸 ABOUT POSTY -->
   <section class="main-content about fade-in">
     <h2>About Posty</h2>
-    <p>Posty is a playful, interactive postcard experience. Scan a printed Posty via QR code to reveal a random cat image, bringing a little joy into your day or someone else's.</p>
+    <p>Posty is a fun, web-based postcard experience that blends digital play with personal connection. 
+       Scan a printed Posty via QR code to reveal a random cat image and a cheerful fact that’s sure to brighten your day.</p>
 
-    <!-- 🌸 INSTRUCTIONS SECTION -->
-  <section class="main-content fade-in">
-    <h2>Instructions!</h2>
-    <p>1. Scan the Posty!</p>
-    <img src="postcard_examples.png" alt="Postcard Preview" class="main-image">
-    <p>2. Tap 'View Surprise' and see what awaits you below!</p>
+    <p>Each Posty is designed with soft colors, floating hearts, and playful animations to make every moment feel light and joyful — just like receiving a surprise in the mail.</p>
   </section>
-    
-    <p>Each Posty is designed with soft colors, heart animations, and playful buttons to make the experience cheerful and interactive.</p>
+
+  <!-- 🌸 INSTRUCTIONS -->
+  <section class="main-content fade-in">
+    <h2>How It Works</h2>
+    <p>1. Find or scan a Posty QR code 📬</p>
+    <img src="postcard_examples.png" alt="Postcard Preview" class="main-image">
+    <p>2. Tap “View Surprise!” to reveal your random cat and fun fact 🐾</p>
 
     <div class="buttons">
       <button onclick="window.location.href='view.html'">View Surprise!</button>
@@ -92,7 +146,7 @@
   </footer>
 
   <script>
-    // Fade-in on scroll
+    // Fade-in scroll effect
     const fadeElements = document.querySelectorAll('.fade-in');
     window.addEventListener('scroll', () => {
       const triggerBottom = window.innerHeight * 0.85;
@@ -104,14 +158,15 @@
       });
     });
 
-    // Floating hearts behind About section
+    // Floating background hearts
     const aboutSection = document.querySelector('.main-content.about');
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 10; i++) {
       const heart = document.createElement('span');
       heart.classList.add('bg-heart');
+      heart.textContent = '💖';
       heart.style.left = Math.random() * 90 + '%';
       heart.style.top = Math.random() * 80 + '%';
-      heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+      heart.style.fontSize = (18 + Math.random() * 30) + 'px';
       aboutSection.appendChild(heart);
     }
   </script>
