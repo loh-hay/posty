@@ -16,6 +16,7 @@
       font-family: 'Montserrat', sans-serif;
       color: #EF92D2;
       text-align: center;
+      overflow-x: hidden;
     }
 
     .main-content {
@@ -26,6 +27,8 @@
       width: 85%;
       max-width: 600px;
       box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
@@ -73,11 +76,18 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      animation: pulse 2s infinite;
     }
 
     button:hover {
       background-color: #fde7f5;
       color: #EF92D2;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     #catCount {
@@ -104,7 +114,25 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 💖 Hearts animation */
+    /* 💖 Floating hearts behind main content */
+    .bg-heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      font-size: 1.5rem;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.2;
+      animation: floatBack 8s linear infinite;
+    }
+
+    @keyframes floatBack {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
+      50% { transform: translateY(-50px) rotate(45deg); opacity: 0.3; }
+      100% { transform: translateY(-100px) rotate(90deg); opacity: 0; }
+    }
+
+    /* Optional: smooth fade of new hearts */
     .heart {
       position: fixed;
       font-size: 1.5rem;
@@ -129,14 +157,16 @@
     <p id="catCount">You’ve seen 1 cat today!</p>
 
     <div class="button-row">
-      <button onclick="randomCat()">More!</button>
-      <button id="shareBtn">Share Posty 💌</button>
-      <button id="saveBtn">Save Cat 📸</button>
+      <button onclick="randomCat()">More Meow!</button>
+      <button id="saveBtn">Save Posty 📸</button>
       <button onclick="window.location.href='index.html'">Back</button>
     </div>
   </div>
 
   <div id="heart-container"></div>
+
+  <!-- html2canvas library -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script>
     const cats = ['curious_cat.jpg', 'funny_cat.jpg', 'hearts_cat.png', 'standing_cat.jpg'];
@@ -176,6 +206,7 @@
       };
     }
 
+    // 💖 Burst hearts animation
     function burstHearts() {
       const container = document.getElementById('heart-container');
       for (let i = 0; i < 10; i++) {
@@ -190,22 +221,33 @@
       }
     }
 
-    document.getElementById('shareBtn').onclick = () => {
-      const fact = document.getElementById('catFact').textContent;
-      navigator.clipboard.writeText(`🐱 ${fact} — from Posty 💌`);
-      alert("Copied your Posty! 💖");
-    };
-
+    // 💾 Save full main-content as image
     document.getElementById('saveBtn').onclick = () => {
-      const imgSrc = document.getElementById('catImage').src;
-      const link = document.createElement('a');
-      link.href = imgSrc;
-      link.download = 'posty_cat.jpg';
-      link.click();
+      const content = document.querySelector('.main-content');
+      html2canvas(content).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'my_posty.png';
+        link.click();
+        alert("Your Posty has been saved! 💌");
+      });
     };
 
-    window.onload = randomCat;
+    // Add subtle background hearts behind content
+    window.onload = () => {
+      randomCat();
+      const main = document.querySelector('.main-content');
+      for (let i = 0; i < 8; i++) {
+        const bgHeart = document.createElement('span');
+        bgHeart.classList.add('bg-heart');
+        bgHeart.style.left = Math.random() * 90 + '%';
+        bgHeart.style.top = Math.random() * 80 + '%';
+        bgHeart.style.fontSize = (20 + Math.random() * 30) + 'px';
+        main.appendChild(bgHeart);
+      }
+    };
   </script>
 
 </body>
 </html>
+
