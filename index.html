@@ -6,11 +6,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <title>Posty 💌</title>
+  <style>
+    /* Fade-in animation for sections */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating hearts behind About section */
+    .bg-heart {
+      position: absolute;
+      font-size: 1.5rem;
+      color: rgba(255, 182, 193, 0.3);
+      z-index: 0;
+      pointer-events: none;
+      animation: floatBack 10s linear infinite;
+    }
+
+    @keyframes floatBack {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-50px) rotate(45deg); }
+      100% { transform: translateY(-100px) rotate(90deg); }
+    }
+
+    .main-content.about {
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
 </head>
 
 <body class="index">
   <!-- 🌸 HERO SECTION -->
-  <section class="hero">
+  <section class="hero fade-in">
     <div class="hero-content">
       <h1>Welcome to</h1>
       <img src="logo.png" alt="Posty Logo" class="logo" />
@@ -21,7 +55,7 @@
   </section>
 
   <!-- 🌸 INSTRUCTIONS SECTION -->
-  <section class="main-content">
+  <section class="main-content fade-in">
     <h2>Instructions!</h2>
     <p>1. Scan the Posty!</p>
     <img src="postcard_examples.png" alt="Postcard Preview" class="main-image">
@@ -32,7 +66,7 @@
   </section>
 
   <!-- 🌸 ABOUT POSTY SECTION -->
-  <section class="main-content about">
+  <section class="main-content about fade-in">
     <h2>About Posty</h2>
     <p>Posty is a playful, interactive postcard experience. Scan a printed Posty via QR code to reveal a random cat meme, bringing a little joy into your day or someone else's.</p>
 
@@ -51,8 +85,33 @@
   </section>
 
   <!-- 🌸 FOOTER -->
-  <footer>
+  <footer class="fade-in">
     <p>© 2025 Posty | Made with 💖 by Hayllie</p>
   </footer>
+
+  <script>
+    // Fade-in on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    window.addEventListener('scroll', () => {
+      const triggerBottom = window.innerHeight * 0.85;
+      fadeElements.forEach(el => {
+        const boxTop = el.getBoundingClientRect().top;
+        if (boxTop < triggerBottom) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Floating hearts behind About section
+    const aboutSection = document.querySelector('.main-content.about');
+    for (let i = 0; i < 8; i++) {
+      const heart = document.createElement('span');
+      heart.classList.add('bg-heart');
+      heart.style.left = Math.random() * 90 + '%';
+      heart.style.top = Math.random() * 80 + '%';
+      heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+      aboutSection.appendChild(heart);
+    }
+  </script>
 </body>
 </html>
