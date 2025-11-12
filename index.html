@@ -10,7 +10,29 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* 🌸 FONT STYLES */
+    /* 🌸 GLOBAL BACKGROUND (matches view page) */
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('posty_bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Soft pink overlay for consistency */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-color: rgba(255, 182, 193, 0.2); /* gentle blush tint */
+      z-index: -1;
+    }
+
+    /* 🌸 TEXT STYLING */
     h1, h2, h3 {
       font-family: 'Chewy', cursive;
       color: #EF92D2;
@@ -21,13 +43,42 @@
       color: #444;
       line-height: 1.6;
       max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* 🌸 SECTION SPACING */
+    /* 🌸 LAYOUT & SPACING */
     section {
       margin: 3rem auto;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 1rem;
+      max-width: 800px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      backdrop-filter: blur(4px);
+    }
+
+    /* 🌸 HERO SECTION */
+    .hero {
+      background: none;
+      box-shadow: none;
+    }
+
+    .logo {
+      width: 280px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      color: #EF92D2;
     }
 
     /* 🌸 ANIMATIONS */
@@ -42,7 +93,7 @@
       transform: translateY(0);
     }
 
-    /* 🌸 FLOATING HEARTS (background decoration) */
+    /* 🌸 BACKGROUND HEARTS */
     .bg-heart {
       position: absolute;
       color: rgba(255, 182, 193, 0.25);
@@ -55,15 +106,6 @@
       0% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-40px) rotate(30deg); }
       100% { transform: translateY(-80px) rotate(60deg); }
-    }
-
-    .main-content.about {
-      position: relative;
-      overflow: hidden;
-      background-color: #fde7f5;
-      border-radius: 1rem;
-      padding: 3rem 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     /* 🌸 BUTTONS */
@@ -96,7 +138,6 @@
       font-size: 0.9rem;
       color: #777;
       padding: 2rem 0;
-      background: #fff;
     }
 
     /* 🌸 RESPONSIVE */
@@ -104,13 +145,14 @@
       h1 { font-size: 2.2rem; }
       h2 { font-size: 1.6rem; }
       p { font-size: 0.95rem; }
+      .logo { width: 200px; }
     }
   </style>
 </head>
 
 <body class="index">
   <!-- 🌸 HERO SECTION -->
-  <section>
+  <section class="hero fade-in">
     <div class="hero-content">
       <h1>Welcome to</h1>
       <img src="logo.png" alt="Posty Logo" class="logo">
@@ -122,10 +164,9 @@
   <!-- 🌸 ABOUT POSTY -->
   <section class="main-content about fade-in">
     <h2>About Posty</h2>
-    <p>Posty is a fun, web-based postcard experience that blends digital play with personal connection. 
-       Scan a printed Posty via QR code to reveal a random cat image and a cheerful fact that’s sure to brighten your day.</p>
+    <p>Posty is a playful, interactive postcard experience that turns a simple QR scan into a moment of surprise and laughter. Each Posty reveals a random cat image and a cute fact to brighten your day.</p>
 
-    <p>Each Posty is designed to make every moment feel light and joyful — just like receiving a surprise in the mail.</p>
+    <p>With soft colors, gentle hearts, and simple animations, Posty combines digital fun with the warm charm of sending a postcard — making every moment feel special.</p>
   </section>
 
   <!-- 🌸 INSTRUCTIONS -->
@@ -141,12 +182,12 @@
   </section>
 
   <!-- 🌸 FOOTER -->
-  <footer>
+  <footer class="fade-in">
     <p>© 2025 Posty | Made with 💖 by Hayllie</p>
   </footer>
 
   <script>
-    // Fade-in scroll effect
+    // Fade-in on scroll
     const fadeElements = document.querySelectorAll('.fade-in');
     window.addEventListener('scroll', () => {
       const triggerBottom = window.innerHeight * 0.85;
