@@ -167,6 +167,34 @@
       heart.style.fontSize = (18 + Math.random() * 30) + 'px';
       aboutSection.appendChild(heart);
     }
-  </script>
+
+     // Fade-in scroll effect
+  const fadeElements = document.querySelectorAll('.fade-in');
+  window.addEventListener('scroll', () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    fadeElements.forEach(el => {
+      const boxTop = el.getBoundingClientRect().top;
+      if (boxTop < triggerBottom) {
+        el.classList.add('visible');
+      }
+    });
+  });
+
+  // 🌸 Floating hearts behind About section
+  const aboutSection = document.querySelector('.main-content.about');
+  if (aboutSection) {
+    for (let i = 0; i < 10; i++) {
+      const heart = document.createElement('span');
+      heart.classList.add('bg-heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * 95 + '%';
+      heart.style.top = Math.random() * 85 + '%';
+      heart.style.fontSize = (18 + Math.random() * 28) + 'px';
+      heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+      heart.style.animationDelay = (Math.random() * 3) + 's';
+      aboutSection.appendChild(heart);
+    }
+  }
+</script>
 </body>
 </html>
