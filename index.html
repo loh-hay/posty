@@ -1,253 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Posty 💌 Your Purr-sonal Cat</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posty 💌</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
   <style>
-    /* Match home page background */
-    body {
-      background-image: url('posty_bg.png');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      color: #EF92D2;
-      text-align: center;
-      overflow-x: hidden;
-    }
-
-    .main-content {
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 1rem;
-      padding: 2rem;
-      margin: 4rem auto;
-      width: 85%;
-      max-width: 600px;
-      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
+    /* 🌸 FONT STYLES */
+    h1, h2, h3 {
       font-family: 'Chewy', cursive;
       color: #EF92D2;
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
     }
 
-    #catImage {
-      max-width: 80%;
-      border-radius: 20px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      opacity: 0;
-      transform: scale(0.9);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    #catImage.visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    #catFact {
-      font-size: 1.1rem;
+    p, li {
+      font-family: 'Montserrat', sans-serif;
       color: #444;
-      margin-top: 1rem;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* 💖 Buttons */
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 1.5rem;
-      flex-wrap: wrap;
+    /* 🌸 SECTION STYLING */
+    section {
+      margin: 3rem auto;
+      text-align: center;
+      padding: 2rem 1rem;
     }
 
-    button {
-      background-color: #EF92D2;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 10px 16px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-
-    button:hover {
-      background-color: #fde7f5;
-      color: #EF92D2;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    #catCount {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    /* 💌 Floating message bubble */
-    .message {
-      background-color: #fff0f7;
-      color: #EF92D2;
-      padding: 8px 14px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      animation: fadeIn 1s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 💖 Floating hearts behind main content */
+    /* 🌸 FLOATING HEARTS BACKGROUND */
     .bg-heart {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      font-size: 1.5rem;
-      z-index: 1;
+      color: rgba(255, 182, 193, 0.25);
+      z-index: 0;
       pointer-events: none;
-      opacity: 0.2;
-      animation: floatBack 8s linear infinite;
+      animation: floatBack 10s linear infinite;
     }
 
     @keyframes floatBack {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.2; }
-      50% { transform: translateY(-50px) rotate(45deg); opacity: 0.3; }
-      100% { transform: translateY(-100px) rotate(90deg); opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      50% { transform: translateY(-40px) rotate(30deg); opacity: 0.5; }
+      100% { transform: translateY(-80px) rotate(60deg); opacity: 0.3; }
     }
 
-    /* Optional: smooth fade of new hearts */
-    .heart {
-      position: fixed;
-      font-size: 1.5rem;
-      animation: floatUp 2s ease forwards;
-      pointer-events: none;
+    .main-content.about {
+      position: relative;
+      overflow: hidden;
+      background-color: #fde7f5;
+      border-radius: 1rem;
+      padding: 3rem 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100px); opacity: 0; }
+    /* 🌸 BUTTONS */
+    .buttons {
+      margin-top: 1.5rem;
+    }
+
+    button {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #EF92D2;
+      color: white;
+      border: none;
+      border-radius: 1.25rem;
+      padding: 0.75rem 1.75rem;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0.3rem;
+    }
+
+    button:hover {
+      background-color: white;
+      color: #EF92D2;
+      border: 2px solid #EF92D2;
+    }
+
+    /* 🌸 FOOTER */
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 2rem 0;
+      background: #fff;
+    }
+
+    /* 🌸 RESPONSIVE */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.6rem; }
+      p { font-size: 0.95rem; }
     }
   </style>
 </head>
-<body>
 
-  <div class="main-content">
-    <div class="message">You’ve got meow-mail! 💌</div>
-    <h1>Purr-sonalised for you 😺</h1>
+<body class="index">
 
-    <img id="catImage" src="" alt="Random Cat Meme" />
-    <p id="catFact">Loading cat fact...</p>
-    <p id="catCount">You’ve seen 1 cat today!</p>
-
-    <div class="button-row">
-      <button onclick="randomCat()">More Meow!</button>
-      <button id="saveBtn">Save Posty 📸</button>
-      <button onclick="window.location.href='index.html'">Back</button>
+  <!-- 🌸 HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to</h1>
+      <img src="logo.png" alt="Posty Logo" class="logo">
+      <p class="subtitle">Bringing smiles, one Posty at a time 💌</p>
     </div>
-  </div>
+    <img src="pink arrow.png" alt="Scroll Down" class="scroll-arrow">
+  </section>
 
-  <div id="heart-container"></div>
+  <!-- 🌸 ABOUT POSTY -->
+  <section class="main-content about">
+    <h2>About Posty</h2>
+    <p>Posty is a playful, interactive postcard experience. Scan a printed Posty via QR code to reveal a random cat image, bringing a little joy into your day or someone else's.</p>
+  </section>
 
-  <!-- html2canvas library -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <!-- 🌸 INSTRUCTIONS -->
+  <section class="main-content">
+    <h2>How It Works</h2>
+    <p>1. Find or scan a Posty QR code 📬</p>
+    <img src="postcard_examples.png" alt="Postcard Preview" class="main-image">
+    <p>2. Tap “View Surprise!” to reveal your random cat and fun fact 🐾</p>
 
+    <div class="buttons">
+      <button onclick="window.location.href='view.html'">View Surprise!</button>
+    </div>
+  </section>
+
+  <!-- 🌸 FOOTER -->
+  <footer>
+    <p>© 2025 Posty | Made with 💖 by Hayllie</p>
+  </footer>
+
+  <!-- 🌸 FLOATING HEART SCRIPT -->
   <script>
-    const cats = ['curious_cat.jpg', 'funny_cat.jpg', 'hearts_cat.png', 'standing_cat.jpg'];
-    const facts = [
-      "Cats sleep for about 70% of their lives. 💤",
-      "A group of cats is called a clowder. 🐾",
-      "The oldest known pet cat was found in a 9,500-year-old grave. 😺",
-      "Cats have over 20 muscles that control their ears! 👂",
-      "A cat’s purr can help heal bones and tissue. 💖",
-      "Most cats run faster than Usain Bolt for short bursts! 🏃‍♂️🐈"
-    ];
-
-    let count = 1;
-
-    function randomCat() {
-      const randomCatFile = cats[Math.floor(Math.random() * cats.length)];
-      const randomFact = facts[Math.floor(Math.random() * facts.length)];
-      const img = document.getElementById('catImage');
-      const factBox = document.getElementById('catFact');
-      const countBox = document.getElementById('catCount');
-
-      img.classList.remove('visible');
-      factBox.classList.remove('visible');
-
-      const newImg = new Image();
-      newImg.src = randomCatFile;
-
-      newImg.onload = () => {
-        img.src = randomCatFile;
-        factBox.textContent = randomFact;
-        img.classList.add('visible');
-        factBox.classList.add('visible');
-        burstHearts();
-
-        count++;
-        countBox.textContent = `You’ve seen ${count} cats today!`;
-      };
-    }
-
-    // 💖 Burst hearts animation
-    function burstHearts() {
-      const container = document.getElementById('heart-container');
+    const aboutSection = document.querySelector('.main-content.about');
+    if (aboutSection) {
       for (let i = 0; i < 10; i++) {
         const heart = document.createElement('span');
-        heart.classList.add('heart');
+        heart.classList.add('bg-heart');
         heart.textContent = '💖';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = (60 + Math.random() * 20) + '%';
-        heart.style.animationDelay = Math.random() * 0.3 + 's';
-        container.appendChild(heart);
-        setTimeout(() => heart.remove(), 2000);
+        heart.style.left = Math.random() * 95 + '%';
+        heart.style.top = Math.random() * 85 + '%';
+        heart.style.fontSize = (18 + Math.random() * 28) + 'px';
+        heart.style.animationDuration = (6 + Math.random() * 4) + 's';
+        heart.style.animationDelay = (Math.random() * 3) + 's';
+        aboutSection.appendChild(heart);
       }
     }
-
-    // 💾 Save full main-content as image
-    document.getElementById('saveBtn').onclick = () => {
-      const content = document.querySelector('.main-content');
-      html2canvas(content).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'my_posty.png';
-        link.click();
-        alert("Your Posty has been saved! 💌");
-      });
-    };
-
-    // Add subtle background hearts behind content
-    window.onload = () => {
-      randomCat();
-      const main = document.querySelector('.main-content');
-      for (let i = 0; i < 8; i++) {
-        const bgHeart = document.createElement('span');
-        bgHeart.classList.add('bg-heart');
-        bgHeart.style.left = Math.random() * 90 + '%';
-        bgHeart.style.top = Math.random() * 80 + '%';
-        bgHeart.style.fontSize = (20 + Math.random() * 30) + 'px';
-        main.appendChild(bgHeart);
-      }
-    };
   </script>
 
 </body>
 </html>
-
