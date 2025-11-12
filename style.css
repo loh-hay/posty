@@ -253,3 +253,40 @@ footer {
     opacity: 0;
   }
 }
+
+/* === FLOATING HEARTS BEHIND ABOUT SECTION === */
+.main-content.about {
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* keeps text above hearts */
+}
+
+.bg-heart {
+  position: absolute;
+  color: rgba(255, 182, 193, 0.25);
+  pointer-events: none;
+  z-index: 0; /* behind text */
+  opacity: 0;
+  animation: floatDreamy 8s ease-in-out infinite;
+}
+
+@keyframes floatDreamy {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40px) scale(1.1) rotate(10deg);
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+}
